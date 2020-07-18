@@ -34,8 +34,7 @@
 
 - name: Build phonebook-mysql and push into Docker Hub
   docker_image:
-    path: "{{ home }}/final-project/"
-    dockerfile: Dockerfile-mysql
+    path: "{{ home }}/final-project/Dockerfile-mysql"
     name: "{{ dockerhub_login_vault }}/phonebook-images-mysql"
     push: yes
     tag: "{{ tag_version }}"
@@ -43,8 +42,7 @@
 
 - name: Build phonebook-app and push into Docker Hub
   docker_image:
-    path: "{{ home }}/final-project/"
-    dockerfile: Dockerfile-app
+    path: "{{ home }}/final-project/Dockerfile-app"
     name: "{{ dockerhub_login_vault }}/phonebook-images-app"
     push: yes
     tag: "{{ tag_version }}"
