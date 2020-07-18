@@ -1,0 +1,23 @@
+---
+
+dockerhub_login_vault: "{{ dockerhub_login }}"
+
+dockerhub_pwd_vault: "{{ dockerhub_pwd }}"
+
+github_private_key: "{{ github_private_key_vault }}"
+
+
+home: "/home/centos"
+
+fake_backend_source_branch: "master"
+
+
+repo_fake_backend: "https://github.com/diranetafen/crud-application-using-flask-and-mysql.git"
+
+tag_version: "phonebook-v1"
+
+branch_clone: "master"
+
+adresse_preprod: "172.31.61.112"
+
+port_preprod: "80"

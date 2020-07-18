@@ -1,0 +1,73 @@
+---
+
+
+# deployment role of phonebook
+
+- name: create project directory
+  file:
+    path: "{{ home }}/final-project"
+    state: directory
+
+- name: copy devops private key file
+  copy:
+    content: "{{ github_private_key }}"
+    dest: "{{ home }}/.ssh/id_rsa"
+    owner: centos
+
+
+- name: load the source code in github
+  git:
+    repo: "{{ repo_fake_backend  }}"
+    dest: "{{ home }}/final-project"
+    accept_hostkey: yes
+    force: yes
+    recursive: no
+    key_file: "{{ home }}/.ssh/id_rsa"
+    version: "{{ branch_clone }}"
+
+
+- name: Log into DockerHub
+  docker_login:
+    username: "{{ dockerhub_login_vault }}"
+    password: "{{ dockerhub_pwd_vault }}"
+
+
+- name: Build phonebook-mysql and push into Docker Hub
+  docker_image:
+    path: "{{ home }}/final-project/"
+    dockerfile: Dockerfile-mysql
+    name: "{{ dockerhub_login_vault }}/phonebook-images-mysql"
+    push: yes
+    tag: "{{ tag_version }}"
+
+
+- name: Build phonebook-app and push into Docker Hub
+  docker_image:
+    path: "{{ home }}/final-project/"
+    dockerfile: Dockerfile-app
+    name: "{{ dockerhub_login_vault }}/phonebook-images-app"
+    push: yes
+    tag: "{{ tag_version }}"
+
+
+- name: container phonebook mysql
+  docker_container:
+    name: phonebook-mysql
+    image: "{{ dockerhub_login_vault }}/phonebook-images-mysql:{{ tag_version }}"
+    state: present
+    restart: yes
+
+- name: sleep for 20 seconds and continue with play
+  wait_for:
+    timeout: 20
+
+- name: container phonebook app
+  docker_container:
+    name: phonebook-app
+    image: "{{ dockerhub_login_vault }}/phonebook-images-app:{{ tag_version }}"
+    state: present
+
+    ports:
+      - "8181:8181"
+    restart: yes
+
