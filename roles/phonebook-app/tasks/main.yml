@@ -60,16 +60,20 @@
   docker_container:
     name: phonebook-mysql
     image: "{{ dockerhub_login_vault }}/phonebook-image-mysql:{{ tag_version }}"
-    state: present
+    state: started
     restart: yes
     networks:
       - name: phonebook_network
+
+- name: sleep for 20 seconds and continue with play
+  wait_for:
+    timeout: 20
 
 - name: container phonebook app
   docker_container:
     name: phonebook-app
     image: "{{ dockerhub_login_vault }}/phonebook-image-app:{{ tag_version }}"
-    state: present
+    state: started
     ports:
       - "8181:8181"
     restart: yes
