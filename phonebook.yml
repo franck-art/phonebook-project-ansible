@@ -2,7 +2,7 @@
 
 # phonebook playbook
 - name: phonebook deployment playbook
-  hosts: webserver
+  hosts: build preprod prod
   gather_facts: yes
   become: true
 
