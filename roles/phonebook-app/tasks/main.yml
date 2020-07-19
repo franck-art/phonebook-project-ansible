@@ -25,25 +25,31 @@
     key_file: "{{ home }}/.ssh/id_rsa"
     version: "{{ branch_clone }}"
 
-
 - name: Log into DockerHub
   docker_login:
     username: "{{ dockerhub_login_vault }}"
     password: "{{ dockerhub_pwd_vault }}"
 
-
 - name: Build phonebook-mysql and push into Docker Hub
   docker_image:
-    path: "{{ home }}/final-project/Dockerfile-mysql"
+    build:
+      path: "{{ home }}/final-project/"
+      dockerfile: Dockerfile-mysql
     name: "{{ dockerhub_login_vault }}/phonebook-images-mysql"
+    state: present
+    source: build
     push: yes
     tag: "{{ tag_version }}"
 
 
 - name: Build phonebook-app and push into Docker Hub
   docker_image:
-    path: "{{ home }}/final-project/Dockerfile-app"
+    build:
+      path: "{{ home }}/final-project/"
+      dockerfile: Dockerfile-app
     name: "{{ dockerhub_login_vault }}/phonebook-images-app"
+    state: present
+    source: build
     push: yes
     tag: "{{ tag_version }}"
 
@@ -64,8 +70,6 @@
     name: phonebook-app
     image: "{{ dockerhub_login_vault }}/phonebook-images-app:{{ tag_version }}"
     state: present
-
     ports:
       - "8181:8181"
     restart: yes
-
