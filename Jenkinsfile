@@ -125,7 +125,7 @@ pipeline {
           }
          
 
-          stage('Find Nmap vulnerability') {
+/*          stage('Find Nmap vulnerability') {
             agent { docker {
                   image 'gauntlt/gauntlt'
                   args '--entrypoint='
@@ -135,6 +135,7 @@ pipeline {
                 sh 'gauntlt nmap.attack'
             }
           }
+*/
 
           stage('Find Os detection vulnerability') {
             agent { docker {
