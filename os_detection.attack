@@ -4,7 +4,7 @@ Feature: OS detection
     Given "nmap" is installed
     And the following profile:
       | name     | value      |
-      | hostname | 172.31.46.237 |
+      | hostname | 3.85.194.110 |
 
   @slow
   Scenario: Detect OS
@@ -14,5 +14,5 @@ Feature: OS detection
       """
     Then the output should contain:
       """
-      Apache
+      Centos
       """

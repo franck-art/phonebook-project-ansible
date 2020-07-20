@@ -1,49 +1,20 @@
 @slow
+Feature: simple nmap attack (sanity check)
 
-Feature: nmap attacks for scanme.nmap.org and to use this for your tests, change the value in the profile
   Background:
     Given "nmap" is installed
     And the following profile:
-      | name           | value        |
-      | hostname       | 172.31.46.237  |
-      | host           | 172.31.46.237   |
-      | tcp_ping_ports | 22,8181,3306 |
+      | name     | value      |
+      | hostname | 3.85.194.110 |
 
-  Scenario: Verify server is open on expected set of ports using the nmap-fast attack step
-    When I launch a "nmap-fast" attack
-    Then the output should match /80.tcp\s+open/
-
-  Scenario: Verify server is open on expected set of ports using the nmap fast flag
+  Scenario: Verify server is available on standard web ports
     When I launch an "nmap" attack with:
       """
-      nmap -F <hostname>
+      nmap -p 8181,3306  <hostname>
       """
-    Then the output should match:
+    Then the output should match /8181.tcp\s+open/
+    And the output should not match:
       """
-      80/tcp\s+open
+      8181/tcp\s+open
+      3306/tcp\s+open
       """
-
-  Scenario: Verify that there are no unexpected ports open
-    When I launch an "nmap" attack with:
-      """
-      nmap -F <hostname>
-      """
-    Then the output should not contain:
-      """
-      22/tcp
-      8181/tcp
-      3306/tcp
-      """
-
-  Scenario: Output to XML
-    When I launch an "nmap" attack with:
-      """
-      nmap -p 80,443 -oX foo.xml <hostname>
-      """
-    And the file "foo.xml" should contain XML:
-      | css                                                          |
-      | ports port[protocol="tcp"][portid="80"] state[state="open"]  |
-    And the file "foo.xml" should not contain XML:
-      | css                                                          |
-      | ports port[protocol="tcp"][portid="123"] state[state="open"] |
-      | ports port[protocol="tcp"][portid="443"] state[state="open"] |
