@@ -31,7 +31,8 @@ Feature: nmap attacks for scanme.nmap.org and to use this for your tests, change
     Then the output should not contain:
       """
       22/tcp
-      25/tcp
+      8181/tcp
+      3306/tcp
       """
 
   Scenario: Output to XML
