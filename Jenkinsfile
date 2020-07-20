@@ -97,7 +97,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod playbook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod phonebook.yml'
                    }
                }
 
