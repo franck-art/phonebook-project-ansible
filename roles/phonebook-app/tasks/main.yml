@@ -94,7 +94,7 @@
       name: "{{ dockerhub_login_vault }}/phonebook-image-app"
       state: present
       source: build
-      push:yes
+      push: yes
       tag: "{{ tag_version }}"
   tags:
     - push
