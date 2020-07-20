@@ -39,7 +39,7 @@ pipeline {
             stages {
                stage("Install ansible role dependencies") {
                    steps {
-                       sh 'ansible-galaxy install -r requirements.yml'
+                       sh 'ansible-galaxy install -r roles/requirements.yml'
                    }
                }
                 stage("Ping targeted hosts") {
@@ -61,6 +61,27 @@ pipeline {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build phonebook.yml'
                    }
                }
+
+
+               stage("Scan docker images on build host") {
+                   when {
+                      expression { GIT_BRANCH == 'origin/dev' }
+                  }
+                   steps {
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit build clair-scan.yml'
+                   }
+
+               }
+                stage("Push on docker hub") {
+                   when {
+                      expression { GIT_BRANCH == 'origin/dev' }
+                   }
+                   steps {
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "push" --limit build phonebook.yml'
+                   }
+               }
+ 
+
                stage("Deploy app in Pre-production Environment") {
                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
@@ -76,7 +97,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod playbook.yml'
                    }
                }
 
@@ -85,12 +106,47 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod playbook.yml'
                    }
                }
 
             }
          }
+
+           stage('Find xss vulnerability') {
+            agent { docker { 
+                  image 'gauntlt/gauntlt' 
+                  args '--entrypoint='
+                  } }
+            steps {
+                sh 'gauntlt --version'
+                sh 'gauntlt xss.attack'
+            }
+          }
+         
+
+          stage('Find Nmap vulnerability') {
+            agent { docker {
+                  image 'gauntlt/gauntlt'
+                  args '--entrypoint='
+                  } }
+            steps {
+                sh 'gauntlt --version'
+                sh 'gauntlt nmap.attack'
+            }
+          }
+
+          stage('Find Os detection vulnerability') {
+            agent { docker {
+                  image 'gauntlt/gauntlt'
+                  args '--entrypoint='
+                  } }
+            steps {
+                sh 'gauntlt --version'
+                sh 'gauntlt os_detection.attack'
+            }
+          }
+
     }
     post {
      always {
