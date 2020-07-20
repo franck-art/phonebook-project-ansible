@@ -14,5 +14,5 @@ Feature: OS detection
       """
     Then the output should contain:
       """
-      Centos
+      Apache
       """
