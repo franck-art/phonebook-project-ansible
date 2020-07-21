@@ -1,0 +1,20 @@
+@slow
+Feature: simple nmap attack (sanity check)
+
+  Background:
+    Given "nmap" is installed
+    And the following profile:
+      | name     | value      |
+      | hostname | 3.85.194.110 |
+
+  Scenario: Verify server is available on standard web ports
+    When I launch an "nmap" attack with:
+      """
+      nmap -p 8181,3306  <hostname>
+      """
+    Then the output should match /8181.tcp\s+open/
+    And the output should not match:
+      """
+      8181/tcp\s+open
+      3306/tcp\s+open
+      """

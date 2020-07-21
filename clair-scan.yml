@@ -1,0 +1,49 @@
+- name: Clair Scanner Server Setup
+  hosts: build 
+  become: true 
+  vars:
+    image_to_scan_mysql: "franckjunior/phonebook-image-mysql"  #container to scan for vulnerabilities
+    image_to_scan_app: "franckjunior/phonebook-image-app"      #container to scan for vulnerabilities
+    image_tag: v1
+    clair_server: "172.17.0.1"  #clair server api endpoint
+  pre_tasks: 
+    - name: setting up clair-db
+      docker_container:
+        name: clair_db
+        image: arminc/clair-db:2017-09-18
+        exposed_ports:
+          - 5432
+
+    - name: setting up clair-local-scan
+      docker_container:
+        name: clair
+        image: arminc/clair-local-scan:v2.0.6
+        ports:
+          - "6060:6060"
+        links:
+          - "clair_db:postgres"
+
+    - debug:
+        msg: "It will take some time to update the CVE databasae"
+  tasks: 
+    - name: downloading and setting up clair-scanner binary
+      get_url:
+        url: https://github.com/arminc/clair-scanner/releases/download/v6/clair-scanner_linux_amd64
+        dest: /usr/local/bin/clair-scanner
+        mode: 0755
+    
+    - name: scanning {{ image_to_scan_mysql }} container for vulnerabilities
+      shell: "/usr/local/bin/clair-scanner -r /tmp/{{ image_to_scan_mysql | basename }}-scan-report.json -c http://{{ clair_server }}:6060 --ip {{ clair_server }} {{ image_to_scan_mysql }}:{{ image_tag }}" 
+      register: scan_output
+      ignore_errors: yes
+
+    - name: scanning {{ image_to_scan_app }} container for vulnerabilities
+      shell: "/usr/local/bin/clair-scanner -r /tmp/{{ image_to_scan_app | basename }}-scan-report.json -c http://{{ clair_server }}:6060 --ip {{ clair_server }} {{ image_to_scan_app }}:{{ image_tag }}"
+      register: scan_output
+      ignore_errors: yes
+
+#    - name: exit if some CVE is found 
+#      fail:
+#        msg: "the command failed"
+#      when: "'CVE-2018-' in scan_output.stderr"
+

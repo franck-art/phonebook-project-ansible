@@ -51,29 +51,54 @@
     - preprod
     - prod
 
-- name: Build phonebook-mysql 
-  docker_image:
-    build:
-      path: "{{ home }}/final-project"
-      dockerfile: Dockerfile-mysql
-    name: "{{ dockerhub_login_vault }}/phonebook-image-mysql"
-    state: present
-    source: build
-    tag: "{{ tag_version }}"
+- block:
+  - name: Build phonebook-mysql 
+    docker_image:
+      build:
+        path: "{{ home }}/final-project"
+        dockerfile: Dockerfile-mysql
+      name: "{{ dockerhub_login_vault }}/phonebook-image-mysql"
+      state: present
+      source: build
+      tag: "{{ tag_version }}"
+
+  - name: Build phonebook-app 
+    docker_image:
+      build:
+        path: "{{ home }}/final-project"
+        dockerfile: Dockerfile-app
+      name: "{{ dockerhub_login_vault }}/phonebook-image-app"
+      state: present
+      source: build
+      tag: "{{ tag_version }}"
   tags:
     - build
 
-- name: Build phonebook-app 
-  docker_image:
-    build:
-      path: "{{ home }}/final-project"
-      dockerfile: Dockerfile-app
-    name: "{{ dockerhub_login_vault }}/phonebook-image-app"
-    state: present
-    source: build
-    tag: "{{ tag_version }}"
+- block:
+  - name: Build phonebook-mysql
+    docker_image:
+      build:
+        path: "{{ home }}/final-project"
+        dockerfile: Dockerfile-mysql
+      name: "{{ dockerhub_login_vault }}/phonebook-image-mysql"
+      state: present
+      source: build
+      push: yes
+      tag: "{{ tag_version }}"
+
+  - name: Build phonebook-app
+    docker_image:
+      build:
+        path: "{{ home }}/final-project"
+        dockerfile: Dockerfile-app
+      name: "{{ dockerhub_login_vault }}/phonebook-image-app"
+      state: present
+      source: build
+      push: yes
+      tag: "{{ tag_version }}"
   tags:
-    - build
+    - push
+
 
 - block:
   - name: pull image of phonebook-mysql
