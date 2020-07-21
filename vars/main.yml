@@ -12,12 +12,12 @@ home: "/home/centos"
 fake_backend_source_branch: "master"
 
 
-repo_fake_backend: "https://github.com/diranetafen/crud-application-using-flask-and-mysql.git"
+repo_fake_backend: "https://github.com/franck-art/phonebook-dev.git"
 
 tag_version: "phonebook-v1"
 
 branch_clone: "master"
 
-adresse_preprod: "172.31.46.237"
+adresse_preprod: "34.204.91.116"
 
 port_preprod: "8181"
