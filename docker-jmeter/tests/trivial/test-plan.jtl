@@ -1,0 +1,3 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1595443336427,69,HTML Page Test,200,OK,Scenario 1 1-1,text,false,Test failed: text expected to contain /Zakelijk/,3494,121,1,1,http://172.31.55.64:8181/,68,0,50
+1595443337521,6,HTML Page Test,200,OK,Scenario 1 1-1,text,false,Test failed: text expected to contain /Zakelijk/,3494,121,1,1,http://172.31.55.64:8181/,6,0,1

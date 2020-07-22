@@ -1,0 +1,26 @@
+- name: test the performance of our phonebook app
+  hosts: localhost
+  become: true 
+
+  pre_tasks: 
+    - name: build jmeter images
+      shell: ./build.sh
+      args:
+       executable: /bin/bash
+
+    - name: test the performance of our app with many requests
+      shell: ./test.sh
+
+    - name: create project directory
+      file:
+        path: "/home/centos/phonebook-project-ansible/docker-jmeter/jmeter.log"
+        state: touch
+        mode: '755'
+
+    - name: Copy log file to jmeter.log 
+      copy:
+        src: /home/centos/phonebook-project-ansible/docker-jmeter/tests/trivial/report/statistics.json
+        dest: /home/centos/phonebook-project-ansible/docker-jmeter/jmeter.log
+ 
+    - name: remove all logs files for another check
+      command: sudo rm -rf tests/trivial/report/*
