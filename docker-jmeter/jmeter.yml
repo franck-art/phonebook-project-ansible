@@ -1,5 +1,5 @@
 - name: test the performance of our phonebook app
-  hosts: localhost
+  hosts: preprod
   become: true 
 
   pre_tasks: 
