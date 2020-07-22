@@ -101,6 +101,16 @@ pipeline {
                    }
                }
 
+
+               stage("Test the performance of the app with many request in Preprod environment") {
+                    when {
+                       expression { GIT_BRANCH == 'origin/dev' }
+                    }
+                   steps {
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit localhost docker-jmeter/jmeter.yml'
+                   }
+               }
+
                stage("Deploy app in Production Environment") {
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
