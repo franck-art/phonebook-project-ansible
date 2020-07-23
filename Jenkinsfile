@@ -107,9 +107,10 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh '/home/centos/apache-jmeter-5.2.1/bin/./jmeter -n -t examples/CSVSample.jmx -l report.jtl'
+                       sh '/home/centos/jmeter/apache-jmeter-5.2.1/bin/jmeter -n -t plan_test_jmeter.jmx  -l report.jtl'
                        sh 'cat report.jtl'
                        perfReport 'report.jtl'
+                       perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'report.jtl'
                    }
                }
 
