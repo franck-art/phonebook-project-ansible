@@ -1,0 +1,51 @@
+- hosts: localhost
+  become: true
+  gather_facts: true
+  
+  vars:
+    jenkins_hostname: localhost
+    java_packages:
+      - java-1.8.0-openjdk-devel
+    
+    pip_install_packages:
+      - name: docker
+
+  pre_tasks:
+  - name: update all packages 
+    yum:
+      name: '*'
+      update_only: yes
+      update_cache: yes
+      state: latest
+
+  - name: install wget
+    yum:
+      name: wget
+      state: installed 
+
+  - name: Install epel release
+    yum: 
+      name: epel-release
+      state: installed
+
+  roles:
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker
+    - role: geerlingguy.java
+
+
+  tasks:
+  - name: Using wget to apache jmeter
+    shell: wget http://www.gtlib.gatech.edu/pub/apache/jmeter/binaries/apache-jmeter-5.2.1.tgz
+    args:
+      warn: no
+
+  - name: unzip a file
+    command: tar xf apache-jmeter-5.2.1.tgz
+    args:
+      warn: no
+
+  - name: Run the test with jmx_file
+    shell: apache-jmeter-5.2.1/bin/jmeter -n -t plan_test_jmeter.jmx  -l report.jtl
+
+

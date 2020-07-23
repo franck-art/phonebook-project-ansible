@@ -103,10 +103,6 @@ pipeline {
 
 
                stage("Test the performance of the app with JMETER in Preprod environment") {
-                 agent { docker {
-                  image 'pedrocesarti/jmeter-docker'
-                  args '--entrypoint='
-                  } }
            
                      when {
                        expression { GIT_BRANCH == 'origin/dev' }
