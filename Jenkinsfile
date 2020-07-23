@@ -103,11 +103,16 @@ pipeline {
 
 
                stage("Test the performance of the app with JMETER in Preprod environment") {
-                    when {
+                 agent { docker {
+                  image 'pedrocesarti/jmeter-docker'
+                  args '--entrypoint='
+                  } }
+           
+                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh '/home/centos/jmeter/apache-jmeter-5.2.1/bin/jmeter -n -t plan_test_jmeter.jmx  -l report.jtl'
+                       sh 'jmeter -n -t plan_test_jmeter.jmx  -l report.jtl'
                        sh 'cat report.jtl'
                        perfReport 'report.jtl'
                        perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'report.jtl'
@@ -115,6 +120,7 @@ pipeline {
                }
 
                stage("Deploy app in Production Environment") {
+
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
