@@ -108,7 +108,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'jmeter -n -t plan_test_jmeter.jmx  -l report.jtl'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "preprod" --limit preprod jmeter-playbook.yml'
                        sh 'cat report.jtl'
                        perfReport 'report.jtl'
                        perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'report.jtl'
