@@ -102,12 +102,14 @@ pipeline {
                }
 
 
-               stage("Test the performance of the app with many request in Preprod environment") {
+               stage("Test the performance of the app with JMETER in Preprod environment") {
                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit localhost docker-jmeter/jmeter.yml'
+                       sh '/home/centos/apache-jmeter-5.2.1/bin/./jmeter -n -t examples/CSVSample.jmx -l report.jtl'
+                       sh 'cat report.jtl'
+                       perfReport 'report.jtl'
                    }
                }
 
