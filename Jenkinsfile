@@ -39,7 +39,7 @@ pipeline {
             stages {
                stage("Install ansible role dependencies") {
                    steps {
-                       sh 'ansible-galaxy install -r roles/requirements.yml'
+                       sh 'ansible-galaxy install  -r roles/requirements.yml'
                    }
                }
                 stage("Ping targeted hosts") {
@@ -101,7 +101,22 @@ pipeline {
                    }
                }
 
+
+               stage("Test the performance of the app with JMETER in Preprod environment") {
+           
+                     when {
+                       expression { GIT_BRANCH == 'origin/dev' }
+                    }
+                   steps {
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa  --limit preprod jmeter-playbook.yml'
+                       sh 'cat report.jtl'
+                       perfReport 'report.jtl'
+                       perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'report.jtl'
+                   }
+               }
+
                stage("Deploy app in Production Environment") {
+
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
