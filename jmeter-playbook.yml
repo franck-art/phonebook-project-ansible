@@ -51,5 +51,6 @@
 
   - name: Run the test with jmx_file
     shell: apache-jmeter-5.2.1/bin/jmeter -n -t plan_test_jmeter.jmx  -l report.jtl
-
+    args:
+      warn: no
 
