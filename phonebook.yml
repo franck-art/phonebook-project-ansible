@@ -13,7 +13,7 @@
 
   vars:
     pip_install_packages:
-      - name: docker
+      - name: docker-py
 
   pre_tasks:
     - block:
