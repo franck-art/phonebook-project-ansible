@@ -1,11 +1,11 @@
 [build]
-172.31.50.253   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  ansible_python_interpreter=/usr/bin/python3
+172.31.50.253   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  
 
 
 [preprod]
-172.31.55.64   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  ansible_python_interpreter=/usr/bin/python3
+172.31.55.64   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  
 
 
 [prod]
-172.31.38.106   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  ansible_python_interpreter=/usr/bin/python3
+172.31.38.106   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no' 
 
