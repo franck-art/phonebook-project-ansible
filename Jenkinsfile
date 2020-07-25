@@ -121,7 +121,11 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
                    steps {
+<<<<<<< HEAD
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod phonebook.yml'
+=======
+                  sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod phonebook.yml'
+>>>>>>> ba1b5d3631c6964c64d4ffd4f95cb5751d477beb
                    }
                }
 
