@@ -17,6 +17,8 @@
 
     pip_package: python3-pip
 
+    pip_executable: pip
+
   pre_tasks:
     - block:
       - name: update all packages
