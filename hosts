@@ -3,7 +3,7 @@
 
 
 [preprod]
-172.31.54.186   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  ansible_python_interpreter=/usr/bin/python 
+172.31.54.186   ansible_user=centos ansible_ssh_common_args='-o StrictHostKeyChecking=no'  ansible_python_interpreter=/usr/bin/python333 
 
 
 [prod]
