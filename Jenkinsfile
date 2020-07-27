@@ -108,8 +108,8 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa  --limit preprod jmeter-playbook.yml -vvv'
-                       sh 'cat report.jtl'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa  --limit preprod jmeter-playbook.yml '
+                       
                        perfReport 'report.jtl'
                        perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'report.jtl'
                    }
@@ -152,7 +152,7 @@ pipeline {
                 sh 'gauntlt nmap.attack'
             }
           }
-*/
+
 
           stage('Find Os detection vulnerability') {
             agent { docker {
@@ -164,7 +164,7 @@ pipeline {
                 sh 'gauntlt os_detection.attack'
             }
           }
-
+*/
     }
     post {
      always {
