@@ -7,9 +7,6 @@
   gather_facts: true
   
   vars:
-    jenkins_hostname: localhost
-    java_packages:
-      - java-1.8.0-openjdk-devel
     
     pip_install_packages:
       - name: docker
@@ -36,7 +33,9 @@
     - role: geerlingguy.pip
     - role: geerlingguy.docker
     - role: geerlingguy.java
-
+      when: "ansible_os_family == 'RedHat'"
+      java_packages:
+        - java-1.8.0-openjdk
 
   tasks:
   - name: Using wget to apache jmeter
