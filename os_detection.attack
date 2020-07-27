@@ -4,15 +4,15 @@ Feature: OS detection
     Given "nmap" is installed
     And the following profile:
       | name     | value      |
-      | hostname | 34.204.91.116 |
+      | hostname | 3.236.220.186 |
 
   @slow
   Scenario: Detect OS
     When I launch an "nmap" attack with:
       """
-      nmap -sV -p80 -PN <hostname>
+      nmap -sV -p8181 -PN <hostname>
       """
     Then the output should contain:
       """
-      Apache
+      Centos
       """
