@@ -152,7 +152,7 @@ pipeline {
                 sh 'gauntlt nmap.attack'
             }
           }
-*/
+
 
           stage('Find Os detection vulnerability') {
             agent { docker {
@@ -164,7 +164,7 @@ pipeline {
                 sh 'gauntlt os_detection.attack'
             }
           }
-
+*/
     }
     post {
      always {
