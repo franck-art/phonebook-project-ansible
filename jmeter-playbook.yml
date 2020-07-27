@@ -2,15 +2,11 @@
 
 # Test of performance 
 - name: Jmeter testing in phonebook app
-  hosts: preprod
+  hosts: localhost
   become: true
   gather_facts: true
-  
-  vars:
-    
-    pip_install_packages:
-      - name: docker
 
+   
   pre_tasks:
   - name: update all packages 
     yum:
@@ -24,14 +20,8 @@
       name: wget
       state: installed 
 
-  - name: Install epel release
-    yum: 
-      name: epel-release
-      state: installed
 
   roles:
-    - role: geerlingguy.pip
-    - role: geerlingguy.docker
     - role: geerlingguy.java
       when: "ansible_os_family == 'RedHat'"
       java_packages:
