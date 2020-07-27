@@ -109,7 +109,7 @@ pipeline {
                     }
                    steps {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa  --limit preprod jmeter-playbook.yml '
-                       sh 'cat report.jtl'
+                       sh 'cat /home/centos/report.jtl'
                        perfReport 'report.jtl'
                        perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'report.jtl'
                    }
