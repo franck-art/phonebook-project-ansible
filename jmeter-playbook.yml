@@ -5,15 +5,8 @@
   hosts: preprod
   become: true
   gather_facts: true
-  
-  vars:
-    jenkins_hostname: localhost
-    java_packages:
-      - java-1.8.0-openjdk-devel
-    
-    pip_install_packages:
-      - name: docker
 
+   
   pre_tasks:
   - name: update all packages 
     yum:
@@ -27,16 +20,12 @@
       name: wget
       state: installed 
 
-  - name: Install epel release
-    yum: 
-      name: epel-release
-      state: installed
 
   roles:
-    - role: geerlingguy.pip
-    - role: geerlingguy.docker
     - role: geerlingguy.java
-
+      when: "ansible_os_family == 'RedHat'"
+      java_packages:
+        - java-1.8.0-openjdk
 
   tasks:
   - name: Using wget to apache jmeter
@@ -50,7 +39,7 @@
       warn: no
 
   - name: Run the test with jmx_file
-    shell: apache-jmeter-5.2.1/bin/jmeter -n -t plan_test_jmeter.jmx  -l report.jtl
+    shell: apache-jmeter-5.2.1/bin/jmeter.sh -n -t plan_test_jmeter.jmx  -l report.jtl
     args:
       warn: no
 
