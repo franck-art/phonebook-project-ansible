@@ -47,19 +47,11 @@
     - preprod
     - prod
 
-- name: create daemon.json file
-  file:
-    path: "{{ docker_path }}/daemon.json"
-    state: file
-  tags:
-    - build
-    - preprod
-    - prod
 
 - name: copy insecure-registry in daemon.json
   copy:
-    content: "{{ daemon_json_file }}"
-    dest: "{{ docker_path }}/daemon.json"
+    src: daemon.json
+    dest: "{{ docker_path }}"
     owner: centos
   tags:
     - build
