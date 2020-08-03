@@ -28,8 +28,4 @@ port_registry: "8082"
 
 docker_path: "/etc/docker" 
 
-daemon_json_file: |
-{
-  "insecure-registries" : ["{{ address_registry }}:{{ port_registry }}"]
-}
 
