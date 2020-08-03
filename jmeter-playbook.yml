@@ -2,7 +2,7 @@
 
 # Test of performance 
 - name: Jmeter testing in phonebook app
-  hosts: localhost
+  hosts: preprod
   become: true
   gather_facts: true
 
@@ -39,7 +39,7 @@
       warn: no
 
   - name: Run the test with jmx_file
-    shell: apache-jmeter-5.2.1/bin/jmeter.sh -n -t plan_test_jmeter.jmx  -l report.jtl
+    shell: apache-jmeter-5.2.1/bin/jmeter.sh -n -t plan_test_jmeter.jmx  -l /opt/bitnami/jenkins/jenkins_home/workspace/phonebook_project/report.jtl
     args:
       warn: no
 
