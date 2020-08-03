@@ -58,7 +58,7 @@
       build:
         path: "{{ home }}/final-project"
         dockerfile: Dockerfile-mysql
-      name: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-mysql"
+      name: "{{ dockerhub_login_vault }}/phonebook-image-mysql"
       state: present
       source: build
       tag: "{{ tag_version }}"
@@ -68,7 +68,7 @@
       build:
         path: "{{ home }}/final-project"
         dockerfile: Dockerfile-app
-      name: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-app"
+      name: "{{ dockerhub_login_vault }}/phonebook-image-app"
       state: present
       source: build
       tag: "{{ tag_version }}"
@@ -81,7 +81,7 @@
       build:
         path: "{{ home }}/final-project"
         dockerfile: Dockerfile-mysql
-      name: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-mysql"
+      name: "{{ dockerhub_login_vault }}/phonebook-image-mysql"
       state: present
       source: build
       push: yes
@@ -92,7 +92,7 @@
       build:
         path: "{{ home }}/final-project"
         dockerfile: Dockerfile-app
-      name: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-app"
+      name: "{{ dockerhub_login_vault }}/phonebook-image-app"
       state: present
       source: build
       push: yes
@@ -104,12 +104,12 @@
 - block:
   - name: pull image of phonebook-mysql
     docker_image:
-      name: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-mysql:{{ tag_version }}"
+      name: "{{ dockerhub_login_vault }}/phonebook-image-mysql:{{ tag_version }}"
       source: pull
 
   - name: pull image of phonebook-app
     docker_image:
-      name: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-app:{{ tag_version }}"
+      name: "{{ dockerhub_login_vault }}/phonebook-image-app:{{ tag_version }}"
       source: pull
   tags:
     - prod
@@ -119,7 +119,7 @@
   - name: container phonebook mysql
     docker_container:
       name: phonebook-mysql
-      image: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-mysql:{{ tag_version }}"
+      image: "{{ dockerhub_login_vault }}/phonebook-image-mysql:{{ tag_version }}"
       state: started
       restart: yes
       networks:
@@ -132,7 +132,7 @@
   - name: container phonebook app
     docker_container:
       name: phonebook-app
-      image: "{{ address_registry }}:{{ port_registry }}/phonebook_repo/phonebook-image-app:{{ tag_version }}"
+      image: "{{ dockerhub_login_vault }}/phonebook-image-app:{{ tag_version }}"
       state: started
       ports:
         - "8181:8181"
