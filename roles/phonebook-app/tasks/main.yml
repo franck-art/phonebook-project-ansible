@@ -43,6 +43,7 @@
     password: "{{ dockerhub_pwd_vault }}"
   tags:
     - build
+    - preprod
     - prod
 
 - name: Create a global network of our two containers
