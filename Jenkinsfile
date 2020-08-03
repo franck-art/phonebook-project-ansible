@@ -111,7 +111,7 @@ pipeline {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa  --limit preprod jmeter-playbook.yml '
                        
                        perfReport 'report.jtl'
-                       perfReport errorFailedThreshold: 20, errorUnstableThreshold: 20, filterRegex: '', sourceDataFiles: 'report.jtl'
+                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: 'report.jtl'
                    }
                }
 
