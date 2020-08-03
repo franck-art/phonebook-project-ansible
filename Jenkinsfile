@@ -137,7 +137,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt xss.attack'
+                sh 'gauntlt attack/xss.attack'
             }
           }
          
@@ -149,7 +149,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt nmap.attack'
+                sh 'gauntlt attack/nmap.attack'
             }
           }
 
@@ -161,7 +161,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt os_detection.attack'
+                sh 'gauntlt attack/os_detection.attack'
             }
           }
 */

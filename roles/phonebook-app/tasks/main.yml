@@ -23,9 +23,9 @@
     - prod
 
 - name: copy test plan file in the remote machine
-  copy:
-    src: plan_test_jmeter.jmx
-    dest: "{{ home }}"
+  template:
+    src: templates/plan_test_jmeter.j2
+    dest: "{{ home }}/plan_test_jmeter.jmx"
     owner: centos
     remote_src: no
   tags:
@@ -49,9 +49,9 @@
 
 
 - name: copy insecure-registry in daemon.json
-  copy:
-    src: daemon.json
-    dest: "{{ docker_path }}"
+  template:
+    src: templates/daemon.j2
+    dest: "{{ docker_path }}/daemon.json"
     owner: centos
   tags:
     - build
