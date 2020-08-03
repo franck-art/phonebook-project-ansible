@@ -2,7 +2,7 @@
 
 # Test of performance 
 - name: Jmeter testing in phonebook app
-  hosts: preprod localhost
+  hosts: localhost
   become: true
   gather_facts: true
 
