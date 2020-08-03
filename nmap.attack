@@ -5,7 +5,7 @@ Feature: simple nmap attack (sanity check)
     Given "nmap" is installed
     And the following profile:
       | name     | value      |
-      | hostname | 34.204.91.116 |
+      | hostname | 3.86.7.129 |
 
   Scenario: Verify server is available on standard web ports
     When I launch an "nmap" attack with:
