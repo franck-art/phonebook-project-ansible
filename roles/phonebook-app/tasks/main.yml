@@ -22,6 +22,17 @@
     - preprod
     - prod
 
+- name: copy test plan file in the remote machine
+  copy:
+    src: plan_test_jmeter.jmx
+    dest: "{{ home }}"
+    owner: centos
+    remote_src: no
+  tags:
+    - preprod
+    - prod
+
+
 - name: load the source code in github
   git:
     repo: "{{ repo_fake_backend  }}"
@@ -31,6 +42,34 @@
     recursive: no
     key_file: "{{ home }}/.ssh/id_rsa"
     version: "{{ branch_clone }}"
+  tags:
+    - build
+    - preprod
+    - prod
+
+- name: create daemon.json file
+  file:
+    path: "{{ docker_path }}/daemon.json"
+    state: file
+  tags:
+    - build
+    - preprod
+    - prod
+
+- name: copy insecure-registry in daemon.json
+  copy:
+    content: "{{ daemon_json_file }}"
+    dest: "{{ docker_path }}/daemon.json"
+    owner: centos
+  tags:
+    - build
+    - preprod
+    - prod
+
+- name: Restart service docker
+  service:
+    name: docker
+    state: restarted
   tags:
     - build
     - preprod

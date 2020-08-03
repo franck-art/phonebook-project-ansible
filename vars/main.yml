@@ -25,3 +25,11 @@ port_preprod: "8181"
 address_registry: "52.206.57.26"
 
 port_registry: "8082"
+
+docker_path: "/etc/docker" 
+
+daemon_json_file: |
+{
+  "insecure-registries" : ["{{ address_registry }}:{{ port_registry }}"]
+}
+
