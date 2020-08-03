@@ -1,4 +1,4 @@
 {
-  "insecure-registries" : ["{{ address_registry }}:{{ port_registry }}"]
+  "insecure-registries" : ["52.206.57.26:8082"]
 }
 
