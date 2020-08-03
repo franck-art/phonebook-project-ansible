@@ -39,7 +39,7 @@
       warn: no
 
   - name: Run the test with jmx_file
-    shell: apache-jmeter-5.2.1/bin/jmeter.sh -n -t ${workspace}/plan_test_jmeter.jmx  -l ${workspace}/report.jtl
+    shell: apache-jmeter-5.2.1/bin/jmeter.sh -n -t plan_test_jmeter.jmx  -l report.jtl
     args:
       warn: no
 
