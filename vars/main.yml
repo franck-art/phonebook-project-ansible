@@ -18,11 +18,11 @@ tag_version: "phonebook-v1"
 
 branch_clone: "master"
 
-adresse_preprod: "172.31.54.181"
+adresse_preprod: "172.31.61.0"
 
 port_preprod: "8181"
 
-address_registry: "52.206.57.26"
+address_registry: "54.237.53.109"
 
 port_registry: "8082"
 
