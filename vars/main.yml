@@ -28,4 +28,4 @@ port_registry: "8082"
 
 docker_path: "/etc/docker" 
 
-
+apache_jmeter_version: "5.2.1"
