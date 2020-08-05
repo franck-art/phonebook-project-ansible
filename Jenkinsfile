@@ -101,9 +101,10 @@ pipeline {
                    }
                }
 
-         }
+            }
 
-      
+         }
+ 
 
                stage("Test the performance of the app with JMETER in Preprod environment") {
                 agent { docker { image 'justb4/jmeter' 
