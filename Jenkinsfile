@@ -107,23 +107,20 @@ pipeline {
  
 
                stage("Test the performance of the app with JMETER in Preprod environment") {
-
+/*
                 agent { docker { image 'ubuntu' 
                                 args '--entrypoint='
                                } 
                           
                 }
   
-
-//                agent any
+*/
+                agent any
                      when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
-                       sh 'sh get-docker.sh'
-                       sh 'docker-jmeter/build.sh'
-                       sh 'docker-jmeter/test.sh'
+                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t templates/plan_test_jmeter.jmx -l report.jtl'
                        perfReport 'report.jtl'
                        perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: 'report.jtl'
                    }
