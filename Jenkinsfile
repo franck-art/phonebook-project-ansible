@@ -118,13 +118,14 @@ pipeline {
                     }
                    steps {
                        sh 'test.sh'
-/*                     perfReport 'report.jtl'
-                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: '/home/centos/report.jtl'*/
+                       perfReport 'report.jtl'
+                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: '/home/centos/report.jtl'
                    }
                }
 
                stage("Deploy app in Production Environment") {
-
+                    
+               agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
