@@ -51,8 +51,12 @@ pipeline {
                 }
 
                  stage("Vérify ansible playbook syntax") {
-                 agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+                 //agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+                   agent any
                    steps {
+                       sh 'sudo yum install epel-release'
+                       sh 'sudo yum install python-pip'
+                       sh 'pip install ansible-lint'
                        sh 'ansible-lint -x 306 playbook.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
