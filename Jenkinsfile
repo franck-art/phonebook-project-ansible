@@ -163,8 +163,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh "mv /tmp/xss.attack  ${WORKSPACE}/"
-                sh 'gauntlt ${WORKSPACE}/xss.attack'
+                sh 'gauntlt /var/lib/jenkins/workspace/xss.attack'
             }
           }
          
