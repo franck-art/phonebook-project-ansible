@@ -57,7 +57,7 @@ pipeline {
                        sh 'sudo yum install epel-release -y'
                        sh 'sudo yum install python-pip -y'
                        sh 'sudo pip install ansible-lint'
-                       sh 'ansible-lint -x 306 playbook.yml'
+                       sh 'ansible-lint -x 306 phonebook.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
                  } 
@@ -126,15 +126,17 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t plan_test_jmeter.jmx  -l docker-jmeter/report.jtl'
-                       perfReport 'report.jtl'
-                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: 'report.jtl'
+                       echo '' > ${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl
+                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
+                       perfReport '${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
+                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: '${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
                    }
                }
 
                stage("Deploy app in Production Environment") {
                     
-               agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+              // agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+                 agent any
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
