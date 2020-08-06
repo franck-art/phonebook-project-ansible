@@ -85,7 +85,7 @@
     - prod
 
 - block:
-  - name: Build phonebook-mysql 
+  - name: Build phonebook-mysql
     docker_image:
       build:
         path: "{{ home }}/final-project"
@@ -95,7 +95,7 @@
       source: build
       tag: "{{ tag_version }}"
 
-  - name: Build phonebook-app 
+  - name: Build phonebook-app
     docker_image:
       build:
         path: "{{ home }}/final-project"
