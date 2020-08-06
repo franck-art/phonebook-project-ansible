@@ -14,7 +14,7 @@
     - name: copy plan_test_jmeter.j2 in plan_test_jmeter.jmx
       template:
         src: templates/plan_test_jmeter.j2
-        dest: /var/lib/jenkins/workspace/plan_test_jmeter.jmx
+        dest: /var/lib/jenkins/workspace/phonebook/docker-jmeter/plan_test_jmeter.jmx
         owner: root
         group: root
         mode: '0644'
@@ -22,7 +22,7 @@
     - name: copy nmap.j2 in nmap.attack
       template:
         src: templates/attack/nmap.j2
-        dest: /var/lib/jenkins/workspace/nmap.attack
+        dest: /var/lib/jenkins/workspace/phonebook/docker-jmeter/nmap.attack
         owner: root
         group: root
         mode: '0644'
@@ -30,7 +30,7 @@
     - name: copy xss.j2 in xss.attack
       template:
         src: templates/attack/xss.j2
-        dest: /var/lib/jenkins/workspace/xss.attack
+        dest: /var/lib/jenkins/workspace/phonebook/docker-jmeter/xss.attack
         owner: root
         group: root
         mode: '0644'
@@ -38,7 +38,7 @@
     - name: copy os_detection.j2 in os_detection.attack
       template:
         src: templates/attack/os_detection.j2
-        dest: /var/lib/jenkins/workspace/os_detection.attack
+        dest: /var/lib/jenkins/workspace/phonebook/docker-jmeter/os_detection.attack
         owner: root
         group: root
         mode: '0644'
