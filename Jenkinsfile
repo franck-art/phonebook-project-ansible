@@ -35,25 +35,30 @@ pipeline {
             }
          }
          stage('Test and deploy the application') {
-            agent any
+            agent none
             stages {
                stage("Install ansible role dependencies") {
+            agent any
                    steps {
                        sh 'ansible-galaxy install  -r roles/requirements.yml'
                    }
                }
                 stage("Ping targeted hosts") {
+             agent any
                    steps {
                        sh 'ansible all -m ping -i hosts --private-key id_rsa'
                    }
                 }
+
                  stage("Vérify ansible playbook syntax") {
+                 agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
                    steps {
                        sh 'ansible-lint -x 306 playbook.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
                  } 
                stage("Build docker images on build host") {
+              agent any
                    when {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
@@ -64,6 +69,7 @@ pipeline {
 
 
                stage("Scan docker images on build host") {
+               agent any
                    when {
                       expression { GIT_BRANCH == 'origin/dev' }
                   }
@@ -73,6 +79,7 @@ pipeline {
 
                }
                 stage("Push on docker hub") {
+              agent any
                    when {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
@@ -83,6 +90,7 @@ pipeline {
  
 
                stage("Deploy app in Pre-production Environment") {
+               agent any
                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
@@ -93,6 +101,7 @@ pipeline {
 
 
                stage("Test the functioning of the app in Preprod environment") {
+               agent any
                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
