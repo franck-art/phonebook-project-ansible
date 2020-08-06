@@ -35,25 +35,34 @@ pipeline {
             }
          }
          stage('Test and deploy the application') {
-            agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+            agent none
             stages {
                stage("Install ansible role dependencies") {
+            agent any
                    steps {
                        sh 'ansible-galaxy install  -r roles/requirements.yml'
                    }
                }
                 stage("Ping targeted hosts") {
+             agent any
                    steps {
                        sh 'ansible all -m ping -i hosts --private-key id_rsa'
                    }
                 }
+
                  stage("Vérify ansible playbook syntax") {
+                 //agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+                   agent any
                    steps {
-                       sh 'ansible-lint -x 306 playbook.yml'
+                       sh 'sudo yum install epel-release -y'
+                       sh 'sudo yum install python-pip -y'
+                       sh 'sudo pip install ansible-lint'
+                       sh 'ansible-lint -x 306 phonebook.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
                  } 
                stage("Build docker images on build host") {
+              agent any
                    when {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
@@ -64,6 +73,7 @@ pipeline {
 
 
                stage("Scan docker images on build host") {
+               agent any
                    when {
                       expression { GIT_BRANCH == 'origin/dev' }
                   }
@@ -73,6 +83,7 @@ pipeline {
 
                }
                 stage("Push on docker hub") {
+              agent any
                    when {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
@@ -83,6 +94,7 @@ pipeline {
  
 
                stage("Deploy app in Pre-production Environment") {
+               agent any
                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
@@ -93,6 +105,7 @@ pipeline {
 
 
                stage("Test the functioning of the app in Preprod environment") {
+               agent any
                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
@@ -113,15 +126,17 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t plan_test_jmeter.jmx  -l docker-jmeter/report.jtl'
-                       perfReport 'report.jtl'
-                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: 'report.jtl'
+                       echo '' > ${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl
+                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
+                       perfReport '${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
+                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: '${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
                    }
                }
 
                stage("Deploy app in Production Environment") {
                     
-               agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+              // agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
+                 agent any
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
