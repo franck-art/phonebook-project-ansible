@@ -15,23 +15,31 @@
       template:
         src: templates/plan_test_jmeter.j2
         dest: /var/lib/jenkins/workspace/plan_test_jmeter.jmx
-        owner: centos
+        owner: root
+        group: root
+        mode: '0644'
 
     - name: copy nmap.j2 in nmap.attack
       template:
         src: templates/attack/nmap.j2
         dest: /var/lib/jenkins/workspace/nmap.attack
-        owner: centos
+        owner: root
+        group: root
+        mode: '0644'
 
     - name: copy xss.j2 in xss.attack
       template:
         src: templates/attack/xss.j2
         dest: /var/lib/jenkins/workspace/xss.attack
-        owner: centos
+        owner: root
+        group: root
+        mode: '0644'
 
     - name: copy os_detection.j2 in os_detection.attack
       template:
         src: templates/attack/os_detection.j2
         dest: /var/lib/jenkins/workspace/os_detection.attack
-        owner: centos
+        owner: root
+        group: root
+        mode: '0644'
 
