@@ -14,24 +14,24 @@
     - name: copy plan_test_jmeter.j2 in plan_test_jmeter.jmx
       template:
         src: templates/plan_test_jmeter.j2
-        dest: /tmp/plan_test_jmeter.jmx
+        dest: ${WORKSPACE}/plan_test_jmeter.jmx
         owner: centos
 
     - name: copy nmap.j2 in nmap.attack
       template:
         src: templates/attack/nmap.j2
-        dest: /tmp/nmap.attack
+        dest: ${WORKSPACE}/nmap.attack
         owner: centos
 
     - name: copy xss.j2 in xss.attack
       template:
         src: templates/attack/xss.j2
-        dest: /tmp/xss.attack
+        dest: ${WORKSPACE}/xss.attack
         owner: centos
 
     - name: copy os_detection.j2 in os_detection.attack
       template:
         src: templates/attack/os_detection.j2
-        dest: /tmp/os_detection.attack
+        dest: ${WORKSPACE}/os_detection.attack
         owner: centos
 
