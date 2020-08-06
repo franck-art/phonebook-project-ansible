@@ -113,7 +113,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh '${WORKSPACE}/docker-jmeter/run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/report.jtl'
+                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/report.jtl'
                        perfReport 'report.jtl'
                        perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: 'report.jtl'
                    }
