@@ -1,0 +1,95 @@
+2020-08-06 00:27:53,660 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2020-08-06 00:27:53,720 INFO o.a.j.JMeter: Loading user properties from: /opt/apache-jmeter-5.1.1/bin/user.properties
+2020-08-06 00:27:53,722 INFO o.a.j.JMeter: Loading system properties from: /opt/apache-jmeter-5.1.1/bin/system.properties
+2020-08-06 00:27:53,736 INFO o.a.j.JMeter: Copyright (c) 1998-2019 The Apache Software Foundation
+2020-08-06 00:27:53,736 INFO o.a.j.JMeter: Version 5.1.1 r1855137
+2020-08-06 00:27:53,736 INFO o.a.j.JMeter: java.version=1.8.0_242
+2020-08-06 00:27:53,736 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2020-08-06 00:27:53,736 INFO o.a.j.JMeter: os.name=Linux
+2020-08-06 00:27:53,736 INFO o.a.j.JMeter: os.arch=amd64
+2020-08-06 00:27:53,737 INFO o.a.j.JMeter: os.version=3.10.0-1127.18.2.el7.x86_64
+2020-08-06 00:27:53,737 INFO o.a.j.JMeter: file.encoding=UTF-8
+2020-08-06 00:27:53,737 INFO o.a.j.JMeter: java.awt.headless=true
+2020-08-06 00:27:53,737 INFO o.a.j.JMeter: Max memory     =352321536
+2020-08-06 00:27:53,737 INFO o.a.j.JMeter: Available Processors =1
+2020-08-06 00:27:53,749 INFO o.a.j.JMeter: Default Locale=English (EN)
+2020-08-06 00:27:53,749 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2020-08-06 00:27:53,749 INFO o.a.j.JMeter: JMeterHome=/opt/apache-jmeter-5.1.1
+2020-08-06 00:27:53,750 INFO o.a.j.JMeter: user.dir  =/home/centos/phonebook-project-ansible/docker-jmeter
+2020-08-06 00:27:53,750 INFO o.a.j.JMeter: PWD       =/home/centos/phonebook-project-ansible/docker-jmeter
+2020-08-06 00:27:53,750 INFO o.a.j.JMeter: IP: 172.17.0.2 Name: 3131fb346653 FullName: 3131fb346653
+2020-08-06 00:27:53,757 INFO o.a.j.s.FileServer: Default base='/home/centos/phonebook-project-ansible/docker-jmeter'
+2020-08-06 00:27:53,772 INFO o.a.j.s.FileServer: Set new base='/home/centos/phonebook-project-ansible/docker-jmeter'
+2020-08-06 00:27:54,214 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2020-08-06 00:27:54,249 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2020-08-06 00:27:54,260 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2020-08-06 00:27:54,274 INFO o.a.j.s.SaveService: Loading file: plan_test_jmeter.jmx
+2020-08-06 00:27:54,335 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2020-08-06 00:27:54,343 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2020-08-06 00:27:54,380 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-08-06 00:27:54,380 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-08-06 00:27:54,380 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-08-06 00:27:54,380 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-08-06 00:27:54,380 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2020-08-06 00:27:54,380 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:54,409 INFO o.a.j.JMeter: Creating summariser <summary>
+2020-08-06 00:27:54,440 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-08-06 00:27:54,442 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-08-06 00:27:54,442 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-08-06 00:27:54,457 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2020-08-06 00:27:54,457 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2020-08-06 00:27:55,635 INFO o.a.j.JMeter: Running test (1596673675635)
+2020-08-06 00:27:55,718 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-08-06 00:27:55,719 INFO o.a.j.e.StandardJMeterEngine: Starting 20 threads for group Thread Group.
+2020-08-06 00:27:55,719 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-08-06 00:27:55,719 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=20 ramp-up=1 delayedStart=false
+2020-08-06 00:27:55,772 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-08-06 00:27:55,772 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-08-06 00:27:55,779 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-08-06 00:27:55,826 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-2
+2020-08-06 00:27:55,868 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-3
+2020-08-06 00:27:55,916 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-4
+2020-08-06 00:27:55,965 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-5
+2020-08-06 00:27:56,014 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-6
+2020-08-06 00:27:56,063 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-7
+2020-08-06 00:27:56,112 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-8
+2020-08-06 00:27:56,153 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = 3131fb346653
+2020-08-06 00:27:56,167 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-9
+2020-08-06 00:27:56,178 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2020-08-06 00:27:56,185 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2020-08-06 00:27:56,185 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2020-08-06 00:27:56,185 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2020-08-06 00:27:56,185 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2020-08-06 00:27:56,208 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-10
+2020-08-06 00:27:56,263 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-11
+2020-08-06 00:27:56,309 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-12
+2020-08-06 00:27:56,349 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-13
+2020-08-06 00:27:56,402 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-14
+2020-08-06 00:27:56,451 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-15
+2020-08-06 00:27:56,502 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-16
+2020-08-06 00:27:56,535 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-08-06 00:27:56,541 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-08-06 00:27:56,541 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-17
+2020-08-06 00:27:56,592 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-18
+2020-08-06 00:27:56,644 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-19
+2020-08-06 00:27:56,668 INFO o.a.j.p.h.s.ResourcesDownloader: Creating ResourcesDownloader with keepalive_inseconds : 60
+2020-08-06 00:27:56,689 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-20
+2020-08-06 00:27:56,996 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:56,998 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:56,996 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,023 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,023 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,024 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,024 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,024 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,025 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,025 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,025 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:57,026 INFO o.a.j.p.h.p.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser
+2020-08-06 00:27:58,241 INFO o.a.j.p.h.s.h.LazyLayeredConnectionSocketFactory: Setting up HTTPS TrustAll Socket Factory
+2020-08-06 00:27:58,263 INFO o.a.j.u.JsseSSLManager: Using default SSL protocol: TLS
+2020-08-06 00:27:58,263 INFO o.a.j.u.JsseSSLManager: SSL session context: per-thread
+2020-08-06 00:27:58,565 INFO o.a.j.u.SSLManager: JmeterKeyStore Location:  type JKS
+2020-08-06 00:27:58,580 INFO o.a.j.u.SSLManager: KeyStore created OK
+2020-08-06 00:27:58,581 WARN o.a.j.u.SSLManager: Keystore file not found, loading empty keystore
+2020-08-06 00:28:00,223 INFO o.a.j.r.Summariser: summary +     13 in 00:00:05 =    2.8/s Avg:  1210 Min:    69 Max:  3180 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
