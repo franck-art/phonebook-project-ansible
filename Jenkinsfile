@@ -51,13 +51,12 @@ pipeline {
                 }
 
                  stage("Vérify ansible playbook syntax") {
-                 //agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
                    agent any
                    steps {
                        sh 'sudo yum install epel-release -y'
                        sh 'sudo yum install python-pip -y'
                        sh 'sudo pip install ansible-lint'
-                       sh 'ansible-lint -x 306 playbook/phonebook.yml'
+                       sh 'ansible-lint -x 306 phonebook.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
                  } 
@@ -67,7 +66,7 @@ pipeline {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build playbook/phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build phonebook.yml'
                    }
                }
 
@@ -78,7 +77,7 @@ pipeline {
                       expression { GIT_BRANCH == 'origin/dev' }
                   }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit build playbook/clair-scan.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit build  clair-scan.yml'
                    }
 
                }
@@ -88,7 +87,7 @@ pipeline {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "push" --limit build playbook/phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "push" --limit build phonebook.yml'
                    }
                }
  
@@ -99,7 +98,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "preprod" --limit preprod playbook/phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "preprod" --limit preprod phonebook.yml'
                    }
                }
 
@@ -110,7 +109,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod playbook/phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod phonebook.yml'
                    }
                }
 
@@ -123,7 +122,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts  playbook/security_test.yml'
+                       sh 'ansible-playbook  -i hosts  security_test.yml'
                    }
                }
  
@@ -144,7 +143,6 @@ pipeline {
 
                stage("Deploy app in Production Environment") {
                     
-              // agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
                  agent any
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
