@@ -57,7 +57,7 @@ pipeline {
                        sh 'sudo yum install epel-release -y'
                        sh 'sudo yum install python-pip -y'
                        sh 'sudo pip install ansible-lint'
-                       sh 'ansible-lint -x 306 phonebook.yml'
+                       sh 'ansible-lint -x 306 playbook/phonebook.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
                  } 
@@ -67,7 +67,7 @@ pipeline {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build playbook/phonebook.yml'
                    }
                }
 
@@ -78,7 +78,7 @@ pipeline {
                       expression { GIT_BRANCH == 'origin/dev' }
                   }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit build clair-scan.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit build playbook/clair-scan.yml'
                    }
 
                }
@@ -88,7 +88,7 @@ pipeline {
                       expression { GIT_BRANCH == 'origin/dev' }
                    }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "push" --limit build phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "push" --limit build playbook/phonebook.yml'
                    }
                }
  
@@ -99,7 +99,7 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "preprod" --limit preprod phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "preprod" --limit preprod playbook/phonebook.yml'
                    }
                }
 
@@ -110,13 +110,22 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "test" --limit preprod playbook/phonebook.yml'
                    }
                }
 
             }
 
          }
+               stage("Installation of configuration files") {
+               agent any
+                    when {
+                       expression { GIT_BRANCH == 'origin/dev' }
+                    }
+                   steps {
+                       sh 'ansible-playbook  -i hosts  playbook/security_test.yml'
+                   }
+               }
  
 
                stage("Test the performance of the app with JMETER in Preprod environment") {
@@ -142,14 +151,14 @@ pipeline {
                     }
                    steps {
 
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod playbook/phonebook.yml'
                   
                    }
                }
 
             
          
-/*
+
            stage('Find xss vulnerability') {
             agent { docker { 
                   image 'gauntlt/gauntlt' 
@@ -157,11 +166,11 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt attack/xss.attack'
+                sh 'gauntlt /tmp/xss.attack'
             }
           }
          
-*/
+
 /*          stage('Find Nmap vulnerability') {
             agent { docker {
                   image 'gauntlt/gauntlt'
@@ -169,7 +178,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt attack/nmap.attack'
+                sh 'gauntlt /tmp/nmap.attack'
             }
           }
 
@@ -181,7 +190,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt attack/os_detection.attack'
+                sh 'gauntlt /tmp/os_detection.attack'
             }
           }
 */

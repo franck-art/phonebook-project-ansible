@@ -22,17 +22,6 @@
     - preprod
     - prod
 
-- name: copy test plan file in the remote machine
-  template:
-    src: templates/plan_test_jmeter.j2
-    dest: "{{ home }}/plan_test_jmeter.jmx"
-    owner: centos
-    remote_src: no
-  tags:
-    - preprod
-    - prod
-
-
 - name: load the source code in github
   git:
     repo: "{{ repo_fake_backend  }}"
@@ -50,7 +39,7 @@
 
 - name: copy insecure-registry in daemon.json
   template:
-    src: templates/daemon.j2
+    src: roles/phonebook-app/templates/daemon.j2
     dest: "{{ docker_path }}/daemon.json"
     owner: centos
   tags:
