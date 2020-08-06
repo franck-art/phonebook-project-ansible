@@ -136,7 +136,7 @@ pipeline {
                    steps {
                      sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/report.jtl'
                        perfReport 'docker-jmeter/report.jtl'
-                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: 'docker-jmeter/report.jtl'
+                       perfReport errorFailedThreshold: 98, errorUnstableThreshold: 98, filterRegex: '', sourceDataFiles: 'docker-jmeter/report.jtl'
                    }
                }
 
