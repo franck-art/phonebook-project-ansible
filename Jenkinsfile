@@ -136,7 +136,7 @@ pipeline {
          
 
            stage('Find xss vulnerability') {
-            agent { docker { 
+  /*          agent { docker { 
                   image 'gauntlt/gauntlt' 
                   args '--entrypoint='
                   } }
@@ -146,7 +146,7 @@ pipeline {
             }
           }
          
-
+*/
 /*          stage('Find Nmap vulnerability') {
             agent { docker {
                   image 'gauntlt/gauntlt'
