@@ -93,3 +93,46 @@
 2020-08-06 00:27:58,580 INFO o.a.j.u.SSLManager: KeyStore created OK
 2020-08-06 00:27:58,581 WARN o.a.j.u.SSLManager: Keystore file not found, loading empty keystore
 2020-08-06 00:28:00,223 INFO o.a.j.r.Summariser: summary +     13 in 00:00:05 =    2.8/s Avg:  1210 Min:    69 Max:  3180 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2020-08-06 00:28:25,800 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-1
+2020-08-06 00:28:25,800 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-08-06 00:28:25,900 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-3
+2020-08-06 00:28:25,900 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-3
+2020-08-06 00:28:25,937 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-8
+2020-08-06 00:28:25,937 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-8
+2020-08-06 00:28:26,057 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-4
+2020-08-06 00:28:26,057 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-4
+2020-08-06 00:28:26,229 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-2
+2020-08-06 00:28:26,229 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-2
+2020-08-06 00:28:26,269 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-12
+2020-08-06 00:28:26,270 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-12
+2020-08-06 00:28:26,270 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-17
+2020-08-06 00:28:26,270 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-17
+2020-08-06 00:28:26,359 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-19
+2020-08-06 00:28:26,359 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-19
+2020-08-06 00:28:26,387 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-14
+2020-08-06 00:28:26,387 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-14
+2020-08-06 00:28:26,398 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-5
+2020-08-06 00:28:26,400 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-5
+2020-08-06 00:28:26,396 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-15
+2020-08-06 00:28:26,400 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-15
+2020-08-06 00:28:26,393 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-13
+2020-08-06 00:28:26,401 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-13
+2020-08-06 00:28:26,391 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-20
+2020-08-06 00:28:26,401 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-20
+2020-08-06 00:28:26,391 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-16
+2020-08-06 00:28:26,401 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-16
+2020-08-06 00:28:26,390 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-18
+2020-08-06 00:28:26,401 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-18
+2020-08-06 00:28:26,405 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-7
+2020-08-06 00:28:26,405 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-7
+2020-08-06 00:28:26,423 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-10
+2020-08-06 00:28:26,424 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-10
+2020-08-06 00:28:26,424 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-11
+2020-08-06 00:28:26,424 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-11
+2020-08-06 00:28:26,434 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-6
+2020-08-06 00:28:26,434 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-6
+2020-08-06 00:28:26,439 INFO o.a.j.t.JMeterThread: Stopping because end time detected by thread: Thread Group 1-9
+2020-08-06 00:28:26,439 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-9
+2020-08-06 00:28:26,440 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-08-06 00:28:26,441 INFO o.a.j.r.Summariser: summary +    148 in 00:00:26 =    5.6/s Avg:   122 Min:    33 Max:   685 Err:     0 (0.00%) Active: 0 Started: 20 Finished: 20
+2020-08-06 00:28:26,441 INFO o.a.j.r.Summariser: summary =    161 in 00:00:31 =    5.2/s Avg:   210 Min:    33 Max:  3180 Err:     0 (0.00%)
