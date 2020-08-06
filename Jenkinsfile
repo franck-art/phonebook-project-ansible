@@ -101,22 +101,27 @@ pipeline {
                    }
                }
 
+            }
+
+         }
+ 
 
                stage("Test the performance of the app with JMETER in Preprod environment") {
-           
+
+                agent any
                      when {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa  --limit preprod jmeter-playbook.yml '
-                       
-/*                       perfReport '/home/centos/report.jtl'
-                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: '/home/centos/report.jtl'*/
+                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t plan_test_jmeter.jmx  -l docker-jmeter/report.jtl'
+                       perfReport 'report.jtl'
+                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: 'report.jtl'
                    }
                }
 
                stage("Deploy app in Production Environment") {
-
+                    
+               agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
@@ -127,9 +132,9 @@ pipeline {
                    }
                }
 
-            }
-         }
-
+            
+         
+/*
            stage('Find xss vulnerability') {
             agent { docker { 
                   image 'gauntlt/gauntlt' 
@@ -141,7 +146,7 @@ pipeline {
             }
           }
          
-
+*/
 /*          stage('Find Nmap vulnerability') {
             agent { docker {
                   image 'gauntlt/gauntlt'
