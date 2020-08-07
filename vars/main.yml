@@ -30,4 +30,16 @@ port_registry: "8082"
 
 docker_path: "/etc/docker" 
 
-apache_jmeter_version: "5.2.1"
+
+# Test Plan jmeter variables
+
+protocol: "http"
+
+loop: "400"
+
+users: "5"
+
+rampup_time: "1"
+
+
+
