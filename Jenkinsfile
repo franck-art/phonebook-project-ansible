@@ -51,7 +51,6 @@ pipeline {
                 }
 
                  stage("Vérify ansible playbook syntax") {
-                 //agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
                    agent any
                    steps {
                        sh 'sudo yum install epel-release -y'
@@ -78,7 +77,7 @@ pipeline {
                       expression { GIT_BRANCH == 'origin/dev' }
                   }
                    steps {
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit build clair-scan.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --limit build  clair-scan.yml'
                    }
 
                }
@@ -117,6 +116,15 @@ pipeline {
             }
 
          }
+               stage("Installation of configuration files") {
+               agent any
+                    when {
+                       expression { GIT_BRANCH == 'origin/dev' }
+                    }
+                   steps {
+                       sh 'ansible-playbook  -i hosts  security_test.yml'
+                   }
+               }
  
 
                stage("Test the performance of the app with JMETER in Preprod environment") {
@@ -126,30 +134,29 @@ pipeline {
                        expression { GIT_BRANCH == 'origin/dev' }
                     }
                    steps {
-                       echo '' > ${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl
-                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
-                       perfReport '${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
-                       perfReport errorFailedThreshold: 50, errorUnstableThreshold: 50, filterRegex: '', sourceDataFiles: '${WORKSPACE}/docker-jmeter/docker-jmeter/report.jtl'
+                       sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/report.jtl'
+                       sh 'cat docker-jmeter/report.jtl'
+                       perfReport 'docker-jmeter/report.jtl'
+//                       perfReport errorFailedThreshold: 98, errorUnstableThreshold: 98, filterRegex: '', sourceDataFiles: 'docker-jmeter/report.jtl'
                    }
                }
 
                stage("Deploy app in Production Environment") {
                     
-              // agent { docker { image 'registry.gitlab.com/robconnolly/docker-ansible:latest' } }
                  agent any
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
                     }
                    steps {
 
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod playbook/phonebook.yml'
                   
                    }
                }
 
             
          
-/*
+
            stage('Find xss vulnerability') {
             agent { docker { 
                   image 'gauntlt/gauntlt' 
@@ -157,11 +164,11 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt attack/xss.attack'
+                sh 'gauntlt /var/lib/jenkins/workspace/xss.attack'
             }
           }
          
-*/
+
 /*          stage('Find Nmap vulnerability') {
             agent { docker {
                   image 'gauntlt/gauntlt'
@@ -169,7 +176,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt attack/nmap.attack'
+                sh 'gauntlt /tmp/nmap.attack'
             }
           }
 
@@ -181,7 +188,7 @@ pipeline {
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt attack/os_detection.attack'
+                sh 'gauntlt /tmp/os_detection.attack'
             }
           }
 */

@@ -4,7 +4,7 @@ Feature: OS detection
     Given "nmap" is installed
     And the following profile:
       | name     | value      |
-      | hostname | 3.86.7.129 |
+      | hostname | {{ address_public_preprod }} |
 
   @slow
   Scenario: Detect OS
