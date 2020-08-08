@@ -160,11 +160,11 @@ pipeline {
            stage('Find xss vulnerability') {
             agent { docker { 
                   image 'gauntlt/gauntlt' 
-                  args '--entrypoint='
+                  args '-v ${WORKSPACE}/docker-jmeter/attack:${WORKSPACE}/attack --entrypoint='
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt ${WORKSPACE}/docker-jmeter/xss.attack'
+                sh 'gauntlt ${WORKSPACE}/attack/xss.attack'
             }
           }
          
@@ -184,7 +184,7 @@ pipeline {
           stage('Find Os detection vulnerability') {
             agent { docker {
                   image 'gauntlt/gauntlt'
-                  args '--entrypoint='
+                  args '-v /tmp/attack:${WORKSPACE}/attack --entrypoint='
                   } }
             steps {
                 sh 'gauntlt --version'
