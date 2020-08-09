@@ -155,7 +155,7 @@ pipeline {
                }
 
             
-         
+  /*       
 
            stage('Find xss vulnerability') {
             agent { docker { 
@@ -167,7 +167,7 @@ pipeline {
                 sh 'gauntlt ${WORKSPACE}/attack/xss.attack'
             }
           }
-         
+      */   
 
 /*          stage('Find Nmap vulnerability') {
             agent { docker {
