@@ -149,7 +149,7 @@ pipeline {
                     }
                    steps {
 
-                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod playbook/phonebook.yml'
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod phonebook.yml'
                   
                    }
                }
