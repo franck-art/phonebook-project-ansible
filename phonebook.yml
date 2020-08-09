@@ -34,7 +34,6 @@
 
       - name: install python-pip
         package: name=python-pip state=present update_cache=yes
- 
 
       - name: install zabbix packages
         yum:
