@@ -18,16 +18,30 @@ tag_version: "phonebook-v1"
 
 branch_clone: "master"
 
-address_public_preprod: "100.26.169.94"
+address_public_preprod: "100.26.226.47"
 
-adresse_preprod: "172.31.57.92"
+adresse_preprod: "172.31.51.237"
 
 port_preprod: "8181"
 
-address_registry: "52.3.248.188"
+address_registry: "54.175.9.49"
 
 port_registry: "8082"
 
 docker_path: "/etc/docker" 
 
-apache_jmeter_version: "5.2.1"
+
+# Test Plan jmeter variables
+
+protocol: "http"
+
+loop: "400"
+
+users: "5"
+
+rampup_time: "1"
+
+
+# Zabbix server information
+
+server_address: "34.204.172.163"

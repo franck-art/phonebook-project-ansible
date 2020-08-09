@@ -136,7 +136,7 @@ pipeline {
                    steps {
                        sh '${WORKSPACE}/docker-jmeter/./run.sh -n -t ${WORKSPACE}/docker-jmeter/plan_test_jmeter.jmx  -l ${WORKSPACE}/docker-jmeter/report.jtl'
                        sh 'cat docker-jmeter/report.jtl'
-                       perfReport 'docker-jmeter/report.jtl'
+                   //    perfReport 'docker-jmeter/report.jtl'
 //                       perfReport errorFailedThreshold: 98, errorUnstableThreshold: 98, filterRegex: '', sourceDataFiles: 'docker-jmeter/report.jtl'
                    }
                }
@@ -155,19 +155,17 @@ pipeline {
                }
 
             
-         
 /*
            stage('Find xss vulnerability') {
             agent { docker { 
                   image 'gauntlt/gauntlt' 
-                  args '--entrypoint='
+                  args '-v ${WORKSPACE}/docker-jmeter/attack:${WORKSPACE}/attack --entrypoint='
                   } }
             steps {
                 sh 'gauntlt --version'
-                sh 'gauntlt /var/lib/jenkins/workspace/xss.attack'
+                sh 'gauntlt ${WORKSPACE}/attack/xss.attack'
             }
           }
-         
 */
 /*          stage('Find Nmap vulnerability') {
             agent { docker {
@@ -184,7 +182,7 @@ pipeline {
           stage('Find Os detection vulnerability') {
             agent { docker {
                   image 'gauntlt/gauntlt'
-                  args '--entrypoint='
+                  args '-v /tmp/attack:${WORKSPACE}/attack --entrypoint='
                   } }
             steps {
                 sh 'gauntlt --version'
