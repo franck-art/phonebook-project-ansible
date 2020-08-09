@@ -42,4 +42,6 @@ users: "5"
 rampup_time: "1"
 
 
+# Zabbix server information
 
+server_address: "54.144.21.201"
