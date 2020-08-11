@@ -25,7 +25,7 @@ ___________________________________________________
 
 3. **Infrastructure**
    
-   ![image infra](C:\Users\Fujitsu\Desktop\infra.png)
+  ![infra](https://user-images.githubusercontent.com/58075364/89910686-d75c3600-dbf0-11ea-93b7-3b40a98b720e.png)
 
 All servers are deployed on **AWS**.
 We have on our infrastructure:
