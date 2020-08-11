@@ -2,7 +2,7 @@
 
 ___________________________________________________
 
-# 1. **Context**
+## 1. **Context**
    
    * Deployment of the phonebook application through the CI / CD
    
@@ -12,7 +12,7 @@ ___________________________________________________
    
    * Monitoring of the application and servers in real time
 
-# 2. **Used tools**
+## 2. **Used tools**
    
        * Amazon EC2                                       
        * Docker
@@ -23,7 +23,7 @@ ___________________________________________________
        * Clair                                           
        * Gauntlt
 
-### 3. **Infrastructure**
+## 3. **Infrastructure**
    
   ![infra](https://user-images.githubusercontent.com/58075364/89910686-d75c3600-dbf0-11ea-93b7-3b40a98b720e.png)
 
@@ -46,7 +46,7 @@ The goal here is to store and share our docker images. we used **artifactory** w
 
 They will be used respectively for the build of images, for deployments in test and production environments.
 
-#### 4. **Workflow**
+## 4. **Workflow**
 
 ![workflow](https://user-images.githubusercontent.com/58075364/89910947-24400c80-dbf1-11ea-9a7a-2df4e519e517.png)
 
@@ -74,13 +74,13 @@ In order to fully understand this workfow, let's take the following scenario:
 
 - In order to prevent possible breakdowns and always guarantee the availability of servers, a monitoring solution has been deployed using **zabbix**. follow this link to deploy zabbix: [https://github.com/franck-art/zabbix-server-playbook] (https://github.com/franck-art/zabbix-server-playbook)
 
-##### Keywords
+### Keywords
 
 ```
 zabbix-server, ansible, jenkins, AWS, Jfrog artifactory, Jmeter, Clair, Gauntlt, Slack, Pull Request, Merge Request
 ```
 
-###### References
+### References
 
 * https://github.com/franck-art/zabbix-server-playbook 
 
