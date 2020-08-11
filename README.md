@@ -12,7 +12,7 @@ ___________________________________________________
    
    * Monitoring of the application and servers in real time
 
-## 2. **Used tools**
+# 2. **Used tools**
    
        * Amazon EC2                                       
        * Docker
