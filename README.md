@@ -14,21 +14,14 @@ ___________________________________________________
 
 2. **Used tools**
    
-   * Amazon EC2
+   * Amazon EC2                                        * Jenkins
    
-   * Docker
+   * Ansible                                           * Gauntlt
    
-   * Jfrog artifactory
+   * Zabbix                                            * Docker
    
-   * Jenkins
+   * Clair                                             * Jfrog artifactory
    
-   * Ansible
-   
-   * Zabbix
-   
-   * Clair
-   
-   * Gauntlt
 
 3. **Infrastructure**
    
