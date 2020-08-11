@@ -2,7 +2,7 @@
 
 ___________________________________________________
 
-1. **Context**
+# 1. **Context**
    
    * Deployment of the phonebook application through the CI / CD
    
