@@ -47,7 +47,7 @@ They will be used respectively for the build of images, for deployments in test 
 
 4. **Workflow**
 
-![Workflow](C:\Users\Fujitsu\Desktop\workflow.png)
+![workflow](https://user-images.githubusercontent.com/58075364/89910947-24400c80-dbf1-11ea-9a7a-2df4e519e517.png)
 
 It consists of two environments: recet and procuction
 In order to fully understand this workfow, let's take the following scenario:
