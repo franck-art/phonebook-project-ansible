@@ -1,5 +1,20 @@
-# phonebook app
+# Deployment of the phonebook application
 
-1. Phonebook Infrastructure
+![image infra](C:\Users\Fujitsu\Desktop\infra.png)
 
-2. 
+## Contexte
+* Déploiement de l’application phonebook à travers le CI/CD
+* Implémentation de l’aspect sécurité
+* Système de notification
+* Supervision de l’application et des serveurs en temps réel
+
+
+### Outils utilisés
+* Amazon EC2
+* Docker
+* Jfrog artifactory
+* Jenkins
+* Ansible
+* Zabbix
+* Clair
+* Gauntlt 
