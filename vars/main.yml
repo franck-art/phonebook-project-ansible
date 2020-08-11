@@ -18,13 +18,13 @@ tag_version: "phonebook-v1"
 
 branch_clone: "master"
 
-address_public_preprod: "18.207.236.125"
+address_public_preprod: "54.161.157.148"
 
-adresse_preprod: "172.31.50.46"
+adresse_preprod: "172.31.47.239"
 
 port_preprod: "8181"
 
-address_registry: "52.91.127.237"
+address_registry: "100.26.243.20"
 
 port_registry: "8082"
 
@@ -44,4 +44,4 @@ rampup_time: "1"
 
 # Zabbix server information
 
-server_address: "35.153.106.114"
+server_address: "54.172.64.62"
