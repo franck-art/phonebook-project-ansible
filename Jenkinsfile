@@ -81,7 +81,7 @@ pipeline {
                    }
 
                }
-                stage("Push on docker hub") {
+                stage("Push on Artifactory registry") {
               agent any
                    when {
                       expression { GIT_BRANCH == 'origin/dev' }
