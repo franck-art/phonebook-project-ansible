@@ -1,3 +1,4 @@
+[![Build Status](http://34.204.91.44:8080/buildStatus/icon?job=phonebook)](http://34.204.91.44:8080/job/phonebook/)
 # Deployment of the phonebook application
 
 ___________________________________________________
