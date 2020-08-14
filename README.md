@@ -83,10 +83,10 @@ zabbix-server, ansible, jenkins, AWS, Jfrog artifactory, Jmeter, Clair, Gauntlt,
 
 ### References
 
-* https://github.com/franck-art/zabbix-server-playbook 
+* https://github.com/franck-art/zabbix-server-playbook  to deploy zabbix server
 
-* https://github.com/franck-art/artifactory
+* https://github.com/franck-art/artifactory to deploy private registry
 
-* https://www.zabbix.com/documentation/4.0/fr/manual
+* https://www.zabbix.com/documentation/4.0/fr/manual to learn about zabbix
 
-* https://jfrog.com/download-jfrog-platform/
+* https://jfrog.com/download-jfrog-platform/ to create account and dowload Jfrog artifactory
