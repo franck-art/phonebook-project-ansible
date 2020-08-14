@@ -78,7 +78,7 @@ In order to fully understand this workfow, let's take the following scenario:
 ### Keywords
 
 ```
-zabbix-server, ansible, jenkins, AWS, Jfrog artifactory, Jmeter, Clair, Gauntlt, Slack, Pull Request, Merge Request
+docker, docker compose, git, github, shared library, zabbix-server, ansible, jenkins, AWS, Jfrog artifactory, Jmeter, Clair, Gauntlt, Slack, Pull Request, Merge Request
 ```
 
 ### References
