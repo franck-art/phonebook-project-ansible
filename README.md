@@ -90,3 +90,5 @@ zabbix-server, ansible, jenkins, AWS, Jfrog artifactory, Jmeter, Clair, Gauntlt,
 * https://www.zabbix.com/documentation/4.0/fr/manual to learn about zabbix
 
 * https://jfrog.com/download-jfrog-platform/ to create account and download Jfrog artifactory
+
+* https://github.com/franck-art/share-library in order to share and make reusable codes
